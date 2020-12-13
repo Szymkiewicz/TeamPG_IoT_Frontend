@@ -30,6 +30,11 @@ import { Device } from "./redux/devices-state";
         const { register, errors, control, handleSubmit } = useForm<FormInput>();
         const onSubmit = (data: FormInput) => {
             onCreateDevice(data.name, data.macAdd, data.conName);
+            let value = data.macAdd;
+            let regEx = new RegExp("^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$");
+            if(!regEx.test(value)){
+                console.log("no bueno");
+            }
     };
 
     /*name is the devices name, id is mac address, required means it must be entered
